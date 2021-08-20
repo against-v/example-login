@@ -1,12 +1,16 @@
 import React from 'react';
-import {logout} from '../../store/api-actions';
-import {connect} from 'react-redux';
-import {Link} from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import {ActionCreator} from '../../store/action';
+import {AppRoute, AuthorizationStatus} from '../../const';
 
-function PrivateScreen({logout}) {
-  console.log('PRIVATE SCREEN');
-  const handleClick = () => {
-    logout();
+function PrivateScreen() {
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(ActionCreator.redirectToRoute(AppRoute.LOGIN));
+    dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+    localStorage.removeItem('token');
   };
   return (
     <div>
@@ -14,15 +18,8 @@ function PrivateScreen({logout}) {
       <button
         onClick={handleClick}
       >Logout</button>
-      <Link to={'/login'}>LOGIN</Link>
     </div>
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  logout() {
-    dispatch(logout());
-  },
-});
-
-export default connect(null, mapDispatchToProps)(PrivateScreen);
+export default PrivateScreen;

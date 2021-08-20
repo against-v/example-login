@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {login} from '../../store/api-actions';
-import {Link} from 'react-router-dom';
 
-function LoginForm({onSubmit}) {
-  console.log('LOGIN FORM');
+function LoginForm() {
+  const dispatch = useDispatch();
+
   const handleClick = (e) => {
     e.preventDefault();
-    onSubmit();
+    dispatch(login());
   };
 
   return (
@@ -16,19 +15,7 @@ function LoginForm({onSubmit}) {
       <button
       onClick={handleClick}
       >Login</button>
-      <Link to={'/private'}>PRIVATE</Link>
     </div>
   );
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit() {
-    dispatch(login());
-  },
-});
-
-LoginForm.protoTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
-
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default LoginForm;

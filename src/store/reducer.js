@@ -2,7 +2,7 @@ import {ActionType} from './action';
 import {AuthorizationStatus} from '../const';
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.AUTH,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 const reducer = (state = initialState, action) => {

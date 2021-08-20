@@ -7,8 +7,14 @@ import {Provider} from 'react-redux';
 import reducer from './store/reducer';
 import thunk from 'redux-thunk';
 import {redirect} from './store/middlewares/redirect';
+import {ActionCreator} from './store/action';
+import {AuthorizationStatus} from './const';
 
 const store = createStore(reducer, applyMiddleware(thunk, redirect));
+
+if (localStorage.getItem('token')) {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+}
 
 ReactDOM.render(
   <React.StrictMode>
