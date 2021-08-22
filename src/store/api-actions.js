@@ -1,11 +1,13 @@
-import { nanoid } from 'nanoid';
 import {ActionCreator} from './action';
 import {AuthorizationStatus, AppRoute} from '../const';
 
-export const login = () => (dispatch, _getState) => {
+export const login = (userData) => (dispatch, _getState) => {
+  dispatch(ActionCreator.setFormIsLoading(true));
   setTimeout(() => {
-    localStorage.setItem('token', nanoid(8));
+    localStorage.setItem('user', userData.email);
     dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+    dispatch(ActionCreator.setUser(userData.email));
     dispatch(ActionCreator.redirectToRoute(AppRoute.ROOT));
-  }, 100);
+    dispatch(ActionCreator.setFormIsLoading(false));
+  }, 500);
 };

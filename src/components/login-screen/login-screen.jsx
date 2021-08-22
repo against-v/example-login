@@ -16,7 +16,7 @@ function LoginScreen() {
 
   return (
     <div className="login-screen container">
-      <section className="login-screen__container">
+      <section className="login-screen__form-container">
         <LoginForm/>
       </section>
     </div>

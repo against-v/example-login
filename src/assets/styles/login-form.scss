@@ -1,15 +1,24 @@
 .login-form {
   box-shadow: 0 0 18px 6px rgba(0, 0, 0, .5);
   border-radius: 6px;
+  padding: 12px;
+  background-color: $color-white;
+}
+.login-form__logo-container {
+  text-align: center;
+  margin-bottom: 24px;
+  user-select: none;
+}
+.login-form__logo {
+  vertical-align: top;
 }
 .login-form__fieldset {
-  padding: 12px;
+  padding: 0;
   margin: 0;
   border: none;
 }
 .login-form__title {
-  padding: 12px 0 0 0;
-  margin-bottom: -12px;
+  padding: 0;
   font-size: 24px;
   font-weight: bold;
 }
@@ -22,22 +31,80 @@
   margin-top: 24px;
 }
 
-.form-item__label {
-  display: inline-block;
+.form-item__label-container {
+  display: flex;
+  align-items: flex-end;
   margin-bottom: 8px;
 }
 
-.form-item__input-container {
-  display: flex;
+.form-item__label {
+  font-size: 18px;
+}
+
+.form-item__link {
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: auto;
+  padding-bottom: 1px;
 }
 
 .input {
-  height: 32px;
+  height: 40px;
+  width: 100%;
   border: 1px solid $color-line;
   border-radius: 4px;
   flex-grow: 1;
   font-family: $font-family;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.2;
   padding: 2px 6px;
+  &:focus {
+    outline-color: $color-outline;
+  }
+}
+
+.button {
+  height: 40px;
+  background-color: $color-secondary;
+  border-radius: 4px;
+  font-family: $font-family;
+  font-size: 18px;
+  line-height: 1.2;
+  border: 1px solid $color-secondary;
+  font-weight: bold;
+  color: $color-white;
+  cursor: pointer;
+  &:focus {
+    outline-color: $color-outline;
+  }
+  &_full {
+    width: 100%;
+  }
+  &_loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+    cursor: not-allowed;
+    user-select: none;
+    &::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      left: 50%;
+      margin-left: -8px;
+      top: 9px;
+      border: 2px solid rgba(255, 255, 255, .5);
+      border-top-color: $color-white;
+      border-radius: 50%;
+      animation: rotation 500ms linear infinite;
+    }
+  }
+}
+
+
+@media screen and (max-width: $screen-tablet) {
+  .login-form {
+    box-shadow: 0 0 20px 20px rgba(255, 255, 255, .3);
+  }
 }

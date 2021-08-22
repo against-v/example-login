@@ -12,7 +12,7 @@ import {AuthorizationStatus} from './const';
 
 const store = createStore(reducer, applyMiddleware(thunk, redirect));
 
-if (localStorage.getItem('token')) {
+if (localStorage.getItem('user')) {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
 }
 

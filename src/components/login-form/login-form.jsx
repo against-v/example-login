@@ -1,16 +1,23 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../store/api-actions';
 import LOGO_PNG from '../../assets/img/logo/logo.png';
 import LOGO_WEBP from '../../assets/img/logo/logo.webp';
+import {getFormIsLoading} from '../../store/selectors';
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const isLoading = useSelector(getFormIsLoading);
 
   const handleSubmit = (e) => {
-    console.log(e);
     e.preventDefault();
-    // dispatch(login());
+    dispatch(login({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    }));
   };
 
   return (
@@ -18,41 +25,61 @@ function LoginForm() {
       className="login-form"
       onSubmit={handleSubmit}
     >
-      <div className="login-form__logo">
+      <div className="login-form__logo-container">
         <picture>
-          <img src={LOGO_PNG}/>
+          <source srcSet={LOGO_WEBP} type="image/webp"/>
+          <img
+            className="login-form__logo"
+            src={LOGO_PNG}
+            alt="Logo"
+            width="100"
+          />
         </picture>
       </div>
       <fieldset className="login-form__fieldset">
         <legend className="login-form__title">Sign in</legend>
         <ul className="login-form__list">
           <li className="login-form__item form-item">
-            <label htmlFor="email" className="form-item__label">Email</label>
-            <div className="form-item__input-container">
-              <input
-                id="email"
-                type="email"
-                className="input"
-                placeholder="Email"
-                required
-              />
+            <div className="form-item__label-container">
+              <label htmlFor="email" className="form-item__label">Email</label>
             </div>
+            <input
+              ref={emailRef}
+              id="email"
+              type="email"
+              className="input"
+              placeholder="Email"
+              required
+              tabIndex="1"
+            />
           </li>
           <li className="login-form__item form-item">
-            <label htmlFor="password" className="form-item__label">Password</label>
-            <div className="form-item__input-container">
-              <input
-                id="password"
-                type="password"
-                className="input"
-                placeholder="Password"
-                required
-              />
-              <button>show</button>
+            <div className="form-item__label-container">
+              <label htmlFor="password" className="form-item__label">Password</label>
+              <a
+                href="#"
+                className="form-item__link"
+                tabIndex="2">
+                Forgot password?
+              </a>
             </div>
+            <input
+              ref={passwordRef}
+              id="password"
+              type="password"
+              className="input"
+              placeholder="Password"
+              required
+              tabIndex="1"
+            />
           </li>
           <li className="login-form__item form-item">
-            <button>Login</button>
+            <button
+              disabled={isLoading}
+              className={`button button_full ${isLoading ? 'button_loading' : ''}`}
+              tabIndex="1">
+              Sign in
+            </button>
           </li>
         </ul>
       </fieldset>
