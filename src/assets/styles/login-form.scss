@@ -46,6 +46,12 @@
   font-size: 16px;
   margin-left: auto;
   padding-bottom: 1px;
+  color: $color-blue;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $color-outline;
+    border-radius: 2px;
+  }
 }
 
 .input {
@@ -59,7 +65,9 @@
   line-height: 1.2;
   padding: 2px 6px;
   &:focus {
-    outline-color: $color-outline;
+    outline: none;
+    border-color: $color-outline;
+    box-shadow: 0 0 0 2px $color-outline;
   }
 }
 
@@ -75,7 +83,9 @@
   color: $color-white;
   cursor: pointer;
   &:focus {
-    outline-color: $color-outline;
+    outline: none;
+    border-color: $color-outline;
+    box-shadow: 0 0 0 2px $color-outline;
   }
   &_full {
     width: 100%;
