@@ -57,7 +57,7 @@ function LoginForm() {
             <div className="form-item__label-container">
               <label htmlFor="password" className="form-item__label">Password</label>
               <a
-                href="#"
+                href="#forgot-password"
                 className="form-item__link"
                 tabIndex="2">
                 Forgot password?
