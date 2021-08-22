@@ -1,0 +1,26 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  * {
+    box-sizing: border-box;
+  }
+  font-family: $font-family;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-screen {
+  min-height: 100vh;
+  background-color: $color-black;
+  background-image: linear-gradient(100deg, transparent 20%, $color-white 20%, $color-white 80%, transparent 20%), url("/assets/img/background.jpg");
+  background-size: cover;
+}
+
+.login-screen__container {
+  width: 300px;
+}
